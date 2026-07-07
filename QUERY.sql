@@ -91,8 +91,16 @@ LEFT JOIN Bookings b ON u.user_id = b.user_id
 ORDER BY u.user_id;
 
 -- =========================================================================
---Query 5: Find all bookings where the total cost is greater than the average of all ticket prices
+--Query 6: Find all bookings where the total cost is greater than the average of all ticket prices
 -- =========================================================================
 SELECT booking_id, match_id, total_cost
 FROM Bookings
 WHERE total_cost > (SELECT AVG(total_cost) FROM Bookings);
+
+-- =========================================================================
+--Query 7: Sorted Top 2 expensive matches and skip the absolute expensive one
+-- =========================================================================
+SELECT match_id, fixture, base_ticket_price
+FROM Matches
+ORDER BY base_ticket_price DESC
+LIMIT 2 OFFSET 1;
