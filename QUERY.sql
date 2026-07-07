@@ -54,3 +54,16 @@ WHERE tournament_category = 'Champions League' AND match_status = 'Available';
 -- =========================================================================
 SELECT * FROM Users
 WHERE full_name LIKE 'Tanvir%' OR full_name LIKE '%Haque%';
+
+
+
+-- =========================================================================
+--Query 3: Display bookings with missing payment status.
+-- =========================================================================
+SELECT booking_id,
+       user_id,
+       match_id,
+       COALESCE(payment_status,'Action Required')
+       AS systematic_status
+FROM Bookings
+WHERE payment_status IS NULL;
