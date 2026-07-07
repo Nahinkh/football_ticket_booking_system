@@ -41,3 +41,16 @@ CREATE TABLE Bookings (
     total_cost DECIMAL(10, 2) CHECK (total_cost >= 0),
     UNIQUE (user_id, match_id, seat_number)  -- Ensure a user cannot book the same seat for the same match more than once
 );
+
+-- =========================================================================
+--Query 1: Retrieve all available Champions League matches.
+-- =========================================================================
+SELECT * FROM Matches
+WHERE tournament_category = 'Champions League' AND match_status = 'Available';
+
+
+-- =========================================================================
+--Query 2: Search users whose name starts with "Tanvir" or contains "Haque".
+-- =========================================================================
+SELECT * FROM Users
+WHERE full_name LIKE 'Tanvir%' OR full_name LIKE '%Haque%';
